@@ -1,0 +1,13 @@
+services:
+  app:
+    image: jasonbartz/lambda-builder-python
+    volumes:
+      - "$PWD:/data"
+    environment:
+      AWS_DEFAULT_REGION:
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
+      NAME: builder-test
+      LAMBDA_HANDLER: test.handler
+      LAMBDA_ROLE:
+version: "2"
