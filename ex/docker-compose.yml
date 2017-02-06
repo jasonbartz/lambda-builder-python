@@ -10,4 +10,5 @@ services:
       NAME: builder-test
       LAMBDA_HANDLER: test.handler
       LAMBDA_ROLE:
+      VPC_CONFIG:
 version: "2"
