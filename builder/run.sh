@@ -21,6 +21,11 @@ if [ ! -z ${VPC_CONFIG} ];then
     CONFIG="$CONFIG --vpc-config $VPC_CONFIG"
 fi
 
+if [! -z ${ENVIRONMENT} ];then
+    CONFIG="$CONFIG --environment Variables={$ENVIRONMENT}"
+fi
+
+
 if [ $exists -eq 255 ];then
     echo $exists
     aws lambda create-function \
