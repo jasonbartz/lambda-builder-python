@@ -21,7 +21,7 @@ if [ ! -z ${VPC_CONFIG} ];then
     CONFIG="$CONFIG --vpc-config $VPC_CONFIG"
 fi
 
-if [! -z ${ENVIRONMENT} ];then
+if [ ! -z ${ENVIRONMENT} ];then
     CONFIG="$CONFIG --environment Variables={$ENVIRONMENT}"
 fi
 
