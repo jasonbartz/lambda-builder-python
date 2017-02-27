@@ -21,24 +21,20 @@ if [ ! -z ${VPC_CONFIG} ];then
     CONFIG="$CONFIG --vpc-config $VPC_CONFIG"
 fi
 
-if [ ! -z ${ENVIRONMENT} ];then
-    CONFIG="$CONFIG --environment Variables={$ENVIRONMENT}"
+if [ ! -z "${ENVIRONMENT_VARS}" ];then
+    CONFIG="$CONFIG --environment \"Variables={"${ENVIRONMENT_VARS}"\"}"
 fi
-
 
 if [ $exists -eq 255 ];then
     echo $exists
     aws lambda create-function \
         --function-name "${NAME}" \
         --runtime python2.7 \
-        $CONFIG \
+        "${CONFIG}" \
         --zip-file fileb:///data/lambda.zip
 else
     aws lambda update-function-code \
         --function-name "${NAME}" \
         --zip-file fileb:///data/lambda.zip
-
-    aws lambda update-function-configuration \
-        --function-name "${NAME}" \
-        $CONFIG
+    eval aws lambda update-function-configuration --function-name ${NAME} ${CONFIG}
 fi
