@@ -26,12 +26,7 @@ if [ ! -z "${ENVIRONMENT_VARS}" ];then
 fi
 
 if [ $exists -eq 255 ];then
-    echo $exists
-    aws lambda create-function \
-        --function-name "${NAME}" \
-        --runtime python2.7 \
-        "${CONFIG}" \
-        --zip-file fileb:///data/lambda.zip
+    eval aws lambda create-function --function-name ${NAME} --runtime python2.7 --zip-file fileb:///data/lambda.zip ${CONFIG}
 else
     aws lambda update-function-code \
         --function-name "${NAME}" \
