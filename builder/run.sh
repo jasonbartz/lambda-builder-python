@@ -14,7 +14,7 @@ cd /data && zip -r /data/lambda.zip *
 aws lambda get-function --function-name "${NAME}"
 exists=$?
 
-CONFIG="--role ${LAMBDA_ROLE}"
+CONFIG="--role ${LAMBDA_ROLE} --timeout 300"
 CONFIG="$CONFIG --handler ${LAMBDA_HANDLER}"
 
 if [ ! -z ${VPC_CONFIG} ];then
