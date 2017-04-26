@@ -4,6 +4,7 @@
 : ${LAMBDA_ROLE?"LAMBDA_ROLE must be set."}
 : ${LAMBDA_HANDLER?"LAMBDA_HANDLER must be set."}
 
+
 if [ -e /data/requirements.txt ]; then
     pip install --upgrade --target /lambda -r /data/requirements.txt && cd /lambda && zip -r /data/lambda.zip *
 fi
@@ -35,3 +36,6 @@ else
         --zip-file fileb:///data/lambda.zip
     eval aws lambda update-function-configuration --function-name ${NAME} ${CONFIG}
 fi
+
+# Cleanup
+#rm lambda.zip
