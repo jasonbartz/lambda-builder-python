@@ -4,7 +4,9 @@
 : ${LAMBDA_ROLE?"LAMBDA_ROLE must be set."}
 : ${LAMBDA_HANDLER?"LAMBDA_HANDLER must be set."}
 
-pip install --upgrade --target /lambda -r /data/requirements.txt && cd /lambda && zip -r /data/lambda.zip *
+if [ -e /data/requirements.txt ]; then
+    pip install --upgrade --target /lambda -r /data/requirements.txt && cd /lambda && zip -r /data/lambda.zip *
+fi
 fail=$?
 if [ $fail -eq 1 ];then
     exit 1
